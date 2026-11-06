@@ -1,0 +1,31 @@
+{
+  "title": "Taxi conventionné à Lyon | VSL, gares, Lyon-Saint-Exupéry",
+  "description": "Chauffeur conventionné indépendant à Lyon, 25 ans de métier, berline Volvo. Hôpitaux, Part-Dieu, Perrache et Saint-Exupéry. Réservez : le tarif est annoncé.",
+  "imageAlt": "Berline Volvo gris métallisé de profil, garée devant un mur de pierre : le véhicule de service.",
+  "faq": [
+    {
+      "q": "Quelle différence entre un taxi conventionné et un taxi classique ?",
+      "a": "Un taxi classique se règle comme une course ordinaire. Un taxi conventionné a une convention avec l’Assurance Maladie : lorsque le médecin a prescrit ce mode de transport et que le bon est complet, la facture part en général directement à la caisse, sans avance de votre part."
+    },
+    {
+      "q": "Faut-il un bon de transport ?",
+      "a": "Pour une prise en charge, oui. C’est le médecin qui choisit le mode de transport et qui établit le bon. Sans ce document, la course peut avoir lieu, mais elle reste à votre charge. Dans les deux cas, le tarif est annoncé avant le départ."
+    },
+    {
+      "q": "Un accompagnant peut-il monter avec le patient ?",
+      "a": "Oui, il y a de la place. La prise en charge de cet accompagnant dépend de ce qui est inscrit sur la prescription : besoin d’être accompagné, ou enfant de moins de 16 ans. Le plus sûr est de le vérifier avec le médecin au moment où il rédige le bon."
+    },
+    {
+      "q": "Comment réserver ?",
+      "a": "Par téléphone ou par WhatsApp, avec le lieu, la date et l’heure. Le formulaire de cette page prépare le message. Le créneau et le tarif sont confirmés avant de partir. Un départ tôt le matin ou de nuit se réserve à l’avance."
+    },
+    {
+      "q": "Allez-vous à l’aéroport et aux gares ?",
+      "a": "Oui. Lyon-Saint-Exupéry, la gare de la Part-Dieu et la gare de Perrache font partie des trajets habituels, comme les hôpitaux et les adresses de la métropole."
+    },
+    {
+      "q": "Que se passe-t-il pour un trajet de plus de 150 km ?",
+      "a": "En dessous de 150 kilomètres, la prescription suffit en général. Au-delà, l’Assurance Maladie peut demander un accord préalable avant le transport. On le vérifie ensemble à la réservation, pour ne pas partir sans le cadre prévu."
+    }
+  ]
+}

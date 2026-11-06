@@ -1,36 +1,37 @@
 import type { ReactNode } from "react";
-import { ClockIcon, MoonIcon, PinIcon, PlaneIcon, RouteIcon, TrainIcon } from "../components/icons";
+import { ClockIcon, PinIcon, PlaneIcon, RouteIcon, TrainIcon } from "../components/icons";
 import { SectionHead } from "../components/SectionHead";
+import { site } from "../lib/site";
 
 const SERVICES: { title: string; text: string; icon: ReactNode }[] = [
   {
-    title: "Transfert aéroport",
-    text: "Prise en charge ou dépose aux terminaux. Suivi de vol possible si l’avion avance ou prend du retard. Aide aux bagages.",
-    icon: <PlaneIcon />,
-  },
-  {
-    title: "Gares",
-    text: "Premier train ou dernier départ. Dépose au plus près du hall, ou attente à la sortie avec votre nom.",
-    icon: <TrainIcon />,
-  },
-  {
-    title: "Longue distance",
-    text: "Rendez-vous hors de la ville, retour de soirée, trajet régional. Le prix est fixé avant de monter à bord.",
-    icon: <RouteIcon />,
-  },
-  {
-    title: "Courses en ville",
-    text: "Rendez-vous, courses du quotidien, visites et rendez-vous médicaux. Un créneau, une adresse.",
+    title: "Hôpitaux et cliniques",
+    text: "Consultation, séance ou sortie. L’heure suit le service de soins, et le point de rendez-vous est noté : hall, accueil ou adresse.",
     icon: <PinIcon />,
   },
   {
-    title: "Soirées et événements",
-    text: "Dîner, spectacle, cérémonie. La sortie et le retour se réservent ensemble, l’heure de reprise est notée.",
-    icon: <MoonIcon />,
+    title: "Part-Dieu et Perrache",
+    text: "Premier train ou dernier départ. Dépose au plus près du hall, ou attente à la sortie si le quai se fait attendre.",
+    icon: <TrainIcon />,
   },
   {
-    title: "Mise à disposition",
-    text: "Demi-journée ou journée pour un déplacement professionnel ou une visite. L’horaire est bloqué, l’itinéraire reste souple.",
+    title: "Lyon-Saint-Exupéry",
+    text: "Prise en charge ou dépose aux terminaux. Si le vol avance ou prend du retard, on décale l’heure ensemble.",
+    icon: <PlaneIcon />,
+  },
+  {
+    title: "Courses dans la métropole",
+    text: `Domicile, rendez-vous, visite. ${site.city} et les communes autour, avec un créneau et une adresse, rien de plus.`,
+    icon: <RouteIcon />,
+  },
+  {
+    title: "Au-delà de l’agglomération",
+    text: "Vienne, Saint-Étienne, Grenoble, la Savoie : le trajet se confirme au téléphone. Passé 150 km, un accord préalable peut être demandé.",
+    icon: <RouteIcon />,
+  },
+  {
+    title: "Tôt, tard, dimanche",
+    text: "Joignable toute la semaine. Les départs avant l’aube et ceux de la nuit se réservent à l’avance, pour être là à l’heure dite.",
     icon: <ClockIcon />,
   },
 ];
@@ -40,13 +41,13 @@ export function Services() {
     <section className="block" id="services">
       <div className="container">
         <SectionHead
-          kicker="01 — Services"
+          kicker="01 — Trajets"
           title={
             <>
-              Les trajets que je <em>prends</em> en charge.
+              Hôpital, gare, <em>aéroport</em>.
             </>
           }
-          intro="De la course en ville au départ à l’aube pour l’aéroport. Un seul numéro, le mien."
+          intro="Un seul interlocuteur. Le créneau est confirmé, le prix est dit avant de monter, que la course soit prise en charge ou réglée à bord."
         />
         <div className="card-grid cols-3">
           {SERVICES.map((service) => (

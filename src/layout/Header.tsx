@@ -144,6 +144,9 @@ export function Header() {
               {item.label}
             </a>
           ))}
+          <a href="#faq" onClick={() => setOpen(false)}>
+            Questions
+          </a>
           <a href="#contact" onClick={() => setOpen(false)}>
             Contact
           </a>

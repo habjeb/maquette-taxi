@@ -6,12 +6,12 @@ export function Statement() {
     <section className="statement" aria-label="Promesse">
       <div className="container">
         <h2 className="display d2" data-reveal>
-          Vous savez qui conduit.
+          Le médecin prescrit.
           <br />
-          Vous savez <em>combien.</em>
+          Je <em>conduis</em>.
         </h2>
         <p className="statement-sign" data-reveal style={reveal(120)}>
-          {site.driver}, {site.city}
+          {site.driver} · {site.city} · 25 ans
         </p>
       </div>
     </section>
