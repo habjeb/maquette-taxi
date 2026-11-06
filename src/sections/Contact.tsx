@@ -4,9 +4,9 @@ import { WhatsAppIcon } from "../components/icons";
 import { buildReservationMessage, site, whatsappUrl } from "../lib/site";
 
 const STEPS = [
-  ["Vous appelez ou vous écrivez", "Téléphone ou WhatsApp, comme vous préférez."],
-  ["Je confirme l’heure et le tarif", "Le prix est dit avant le départ, pas à l’arrivée."],
-  ["Je suis au point de rendez-vous", "Adresse, hall ou terminal\u202f: le lieu est noté."],
+  ["Vous appelez ou vous écrivez", "Lieu, date, heure. Le bon de transport, s’il a été prescrit."],
+  ["Je confirme le créneau et le tarif", "Le prix est dit avant le départ. S’il est pris en charge, je le précise aussi."],
+  ["Je suis au rendez-vous", "Hall, domicile ou terminal : le point de prise en charge est noté."],
 ] as const;
 
 export function Contact() {
@@ -73,13 +73,13 @@ export function Contact() {
     <section className="block" id="contact">
       <div className="container">
         <SectionHead
-          kicker="05 — Contact"
+          kicker="07 — Contact"
           title={
             <>
               Réserver une <em>course</em>
             </>
           }
-          intro="Appelez ou écrivez sur WhatsApp. Un message avec le départ, l’arrivée et l’heure suffit."
+          intro="Téléphone ou WhatsApp. Le lieu, l’heure, et le bon de transport s’il a été établi, suffisent pour préparer le trajet."
         />
         <div className="contact-grid">
           <div data-reveal>
@@ -135,7 +135,7 @@ export function Contact() {
                 id="note"
                 name="note"
                 maxLength={400}
-                placeholder="Bagages, siège enfant, numéro de vol…"
+                placeholder="Bon de transport, accompagnant, bagages, numéro de vol…"
                 className="input"
               />
             </div>

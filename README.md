@@ -1,6 +1,8 @@
 # Taxi Pro — maquette liquid glass
 
-Page de présentation pour un chauffeur de taxi indépendant. Le contenu reste celui de la maquette : ville, numéro et avis sont des exemples. L’interface reprend le langage visuel d’un landing « liquid glass » : fond quasi noir, pilule de navigation givrée, titre Instrument Serif avec un seul mot en italique, cartes en verre, pied de page discret.
+Page de présentation d’un **chauffeur de taxi conventionné indépendant à Lyon** (25 ans de métier, berline Volvo) — pas une centrale de réservation. Le nom, le téléphone et WhatsApp restent des placeholders dans `src/lib/site.ts`.
+
+L’interface reprend un landing « liquid glass » : fond charcoal chaud, grain, dégradé lent, faisceau lié au scroll, pilule de navigation givrée, titre Instrument Serif avec un seul mot en italique, cartes en verre.
 
 Application [Vite](https://vite.dev) + React + TypeScript. Les polices viennent de [Fontsource](https://fontsource.org) : Instrument Serif, Newsreader, Geist et Geist Mono.
 
@@ -28,17 +30,17 @@ Dans `src/lib/site.ts` :
 | --- | --- | --- |
 | Marque | `brand` | Taxi Pro |
 | Nom du chauffeur | `driver` | Votre chauffeur |
-| Ville | `city` | Votre ville |
+| Ville | `city` | Lyon |
 | Numéro affiché | `phoneDisplay` | 06 00 00 00 00 |
 | Lien d’appel | `phoneTel` | +33600000000 |
 | WhatsApp | `whatsapp` | 33600000000 |
 
-`33600000000` est le format international, sans `+` ni espaces. Le titre de `index.html` reprend aussi « Votre ville ».
+`33600000000` est le format international, sans `+` ni espaces. Tant que le numéro est un placeholder, il n’est pas repris dans les données structurées.
 
-Photos : remplacez `public/assets/chauffeur.svg` et `public/assets/taxi.svg`. Le texte alternatif est dans `src/sections/Chauffeur.tsx` et `src/sections/Ride.tsx`.
+Photos optimisées : `public/photos/` (Volvo, Lyon aérien, rue lyonnaise, couloir de soins). Le texte alternatif est à côté de chaque image.
 
 Le formulaire n’enregistre rien. Il ouvre WhatsApp avec le message préparé.
 
 ## Avant un site officiel
 
-Retirez « Maquette — Web Commit » dans le pied de page, la balise `noindex` de `index.html`, et complétez la carte professionnelle, le SIRET et l’assurance.
+Retirez « Maquette — Web Commit » dans le pied de page, complétez le nom, le téléphone, l’adresse, le SIRET et l’assurance, puis ajoutez le téléphone réel au schéma `TaxiService` si vous le souhaitez.

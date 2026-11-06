@@ -1,10 +1,10 @@
 import { reveal } from "../lib/delay";
 
 const FACTS = [
+  { num: "25", suffix: "ans", text: "De métier, le même chauffeur" },
   { num: "7", suffix: "j/7", text: "Joignable, dimanche compris" },
-  { num: "4", suffix: "", text: "Passagers, et le coffre" },
-  { num: "6", suffix: "h", text: "Ouverture habituelle" },
-  { num: "0", suffix: "", text: "Surprise sur le tarif annoncé" },
+  { num: "Volvo", suffix: "", text: "Berline, pour le confort du trajet" },
+  { num: "1", suffix: "tarif", text: "Annoncé avant de monter à bord" },
 ] as const;
 
 export function Facts() {

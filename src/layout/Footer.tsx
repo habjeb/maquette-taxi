@@ -13,7 +13,7 @@ export function Footer() {
               <span>{site.brand}</span>
             </a>
             <p className="small">
-              Chauffeur indépendant à {site.city}. <em>Un numéro, une heure, un tarif dit avant le départ.</em>
+              Chauffeur conventionné indépendant à {site.city}. <em>Vingt-cinq ans, une Volvo, un tarif dit avant le départ.</em>
             </p>
           </div>
           <div className="footer-cols">
@@ -21,27 +21,30 @@ export function Footer() {
               <h3>Trajets</h3>
               <ul>
                 <li>
-                  <a href="#services">Aéroport</a>
+                  <a href="#services">Gares et aéroport</a>
                 </li>
                 <li>
-                  <a href="#services">Gares</a>
+                  <a href="#vsl">Bon de transport</a>
                 </li>
                 <li>
-                  <a href="#services">Ville et soirées</a>
+                  <a href="#confort">Berline Volvo</a>
                 </li>
                 <li>
-                  <a href="#course">Exemple de course</a>
+                  <a href="#hopitaux">Hôpitaux et cliniques</a>
                 </li>
               </ul>
             </div>
             <div className="footer-col">
-              <h3>Le chauffeur</h3>
+              <h3>La page</h3>
               <ul>
                 {NAV.map((item) => (
                   <li key={item.id}>
                     <a href={item.href}>{item.label}</a>
                   </li>
                 ))}
+                <li>
+                  <a href="#faq">Questions</a>
+                </li>
               </ul>
             </div>
             <div className="footer-col">
@@ -59,7 +62,7 @@ export function Footer() {
                   <a href="#contact">Préparer un message</a>
                 </li>
                 <li>
-                  <a href="#zones">Horaires</a>
+                  <a href="#zones">Zone et horaires</a>
                 </li>
               </ul>
             </div>
@@ -69,7 +72,10 @@ export function Footer() {
           {site.brand}
         </p>
         <div className="footer-bottom">
-          <p>Avant une mise en ligne officielle, compléter la carte professionnelle, le SIRET et l’assurance.</p>
+          <p>
+            Maquette : nom commercial, téléphone, adresse, SIRET et assurance seront ceux du chauffeur. Le formulaire
+            n’enregistre rien.
+          </p>
           <p>Maquette — Web Commit</p>
         </div>
       </div>

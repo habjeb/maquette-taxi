@@ -4,16 +4,17 @@ export function publicAsset(path: string) {
   return `${import.meta.env.BASE_URL}${normalized}`;
 }
 
+/** Nom, téléphone et WhatsApp restent des placeholders. La ville est Lyon. */
 export const site = {
   brand: "Taxi Pro",
   driver: "Votre chauffeur",
-  city: "Votre ville",
+  city: "Lyon",
   phoneDisplay: "06 00 00 00 00",
   phoneTel: "+33600000000",
   whatsapp: "33600000000",
 } as const;
 
-export const defaultBookingText = "Bonjour, je souhaite réserver une course avec Taxi Pro.";
+export const defaultBookingText = "Bonjour, je souhaite réserver un taxi conventionné à Lyon.";
 
 export function whatsappUrl(text?: string) {
   const base = `https://wa.me/${site.whatsapp}`;
