@@ -8,22 +8,31 @@ Ce dépôt est le build React Bits actuel, extrait de l’archive source. Une in
 
 ## Site en ligne
 
-Adresse prévue :
+Adresse à ouvrir :
 
 **https://habjeb.github.io/maquette-taxi/**
 
-Le site est publié par GitHub Actions (`.github/workflows/pages.yml`) à chaque push sur `main` : `npm ci`, `npm run build`, puis `actions/upload-pages-artifact` et `actions/deploy-pages`. La base Vite est `/maquette-taxi/` (`vite.config.ts`), ce qui correspond à un site de projet sous le compte `habjeb` (un site utilisateur ou d’organisation utiliserait `/`).
+Elle ne répond pas encore. Le workflow `.github/workflows/pages.yml` construit bien le site (`npm ci`, `npm run build`, `actions/upload-pages-artifact`). Le job `actions/deploy-pages` s’arrête ensuite avec `404 Not Found` tant que GitHub Pages n’est pas activé sur le dépôt (« Ensure GitHub Pages has been enabled »). La base Vite est `/maquette-taxi/` (`vite.config.ts`), adaptée à un site de projet sous le compte `habjeb` (un site utilisateur ou d’organisation utiliserait `/`).
 
-### Dépôt privé et GitHub Pages
+### Activer Pages
 
-GitHub Pages est gratuit pour les dépôts **publics**. Sur un dépôt **privé**, Pages exige GitHub Pro, GitHub Team ou GitHub Enterprise. Ce dépôt est privé : si l’activation échoue pour cette raison, le workflow reste prêt. Deux options :
+Le jeton utilisé pour pousser le code ne peut pas changer les réglages Pages (`403 Resource not accessible by integration` sur l’API Pages). À faire dans l’interface GitHub :
 
-1. Rendre le dépôt **public** (Settings → General → Danger zone → Change visibility), puis laisser le workflow déployer. L’URL ci-dessus fonctionne alors sans abonnement payant.
-2. Héberger ailleurs en un clic, sans rendre le code public sur GitHub Pages :
-   - [Vercel](https://vercel.com/new) : importer `habjeb/maquette-taxi`. Framework Vite. Build `npm run build`, dossier de sortie `dist`. Définir la variable d’environnement n’est pas nécessaire si la base reste `/maquette-taxi/` uniquement pour Pages ; sur Vercel à la racine du domaine, il faut repasser `base` à `/` dans `vite.config.ts` (ou `base: '/'`).
-   - [Netlify](https://app.netlify.com/start) : même build `npm run build`, publish directory `dist`, et `base: '/'` si le site est servi à la racine du domaine.
+1. Ouvrir [Settings → Pages](https://github.com/habjeb/maquette-taxi/settings/pages).
+2. Build and deployment → Source : **GitHub Actions**.
+3. Relancer [Deploy GitHub Pages](https://github.com/habjeb/maquette-taxi/actions/workflows/pages.yml) (bouton Run workflow, ou Re-run sur le dernier échec).
+4. Si GitHub demande d’approuver l’environnement `github-pages` (premier déploiement), valider la demande. L’URL ci-dessus est alors celle du site.
 
-Le premier déploiement crée l’environnement `github-pages`. GitHub peut demander une approbation (Settings → Environments → github-pages, ou l’onglet Actions du premier run) avant que l’URL réponde.
+### Dépôt privé
+
+Le dépôt est **privé**. GitHub Pages est gratuit seulement pour un dépôt **public**. Un dépôt privé exige GitHub Pro, GitHub Team ou GitHub Enterprise. Si la page Pages demande une mise à niveau ou refuse l’activation :
+
+1. Rendre le dépôt public (Settings → General → Danger zone → Change visibility), puis suivre les étapes ci-dessus. Pages est alors gratuit.
+2. Ou publier ailleurs sans Pages :
+   - [Vercel](https://vercel.com/new) : importer `habjeb/maquette-taxi`, build `npm run build`, sortie `dist`. Le site Vercel est servi à la racine du domaine : remettre `base` à `'/'` dans `vite.config.ts` avant de déployer.
+   - [Netlify](https://app.netlify.com/start) : même commande de build, publish directory `dist`, et `base: '/'` si le site est à la racine du domaine.
+
+Le workflow reste en place dans les deux cas. Sur Vercel ou Netlify, la base `/maquette-taxi/` ne convient que si le site est publié dans un sous-chemin de ce nom.
 
 ## Reconstruire
 
