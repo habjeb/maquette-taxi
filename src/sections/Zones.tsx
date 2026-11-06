@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { SectorList } from "../components/SectorList";
 import { SectionHead } from "../components/SectionHead";
 import { METRO_SECTORS, REGION_SECTORS } from "../content/places";
 import { publicAsset, site } from "../lib/site";
@@ -54,7 +54,7 @@ export function Zones() {
           </header>
           <div className="sector-grid sector-grid-metro">
             {METRO_SECTORS.map((sector) => (
-              <Sector key={sector.title} title={sector.title} places={sector.places} />
+              <SectorList key={sector.title} title={sector.title} places={sector.places} />
             ))}
           </div>
 
@@ -68,7 +68,7 @@ export function Zones() {
             </header>
             <div className="sector-grid sector-grid-region">
               {REGION_SECTORS.map((sector) => (
-                <Sector key={sector.title} title={sector.title} places={sector.places} />
+                <SectorList key={sector.title} title={sector.title} places={sector.places} />
               ))}
             </div>
           </div>
@@ -88,19 +88,5 @@ export function Zones() {
         </article>
       </div>
     </section>
-  );
-}
-
-function Sector({ title, places }: { title: string; places: readonly string[] }) {
-  const titleId = useId();
-  return (
-    <div className="sector">
-      <h4 id={titleId}>{title}</h4>
-      <ul aria-labelledby={titleId}>
-        {places.map((place) => (
-          <li key={place}>{place}</li>
-        ))}
-      </ul>
-    </div>
   );
 }
