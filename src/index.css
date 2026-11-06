@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/* Outfit est déclaré dans public/fonts.css (URLs relatives, valides avec la base GitHub Pages). */
+
+@theme {
+  --font-sans: "Outfit", Inter, "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  --color-ink: #090a0c;
+  --color-panel: #15181f;
+  --color-amber: #f5c400;
+  --color-amber-deep: #c89600;
+  --color-on-amber: #1a1408;
+  --color-cream: #f4f0e8;
+  --color-copy: #e7e2d8;
+  --color-muted: #c9c3b6;
+  --color-danger: #ffb0a4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 900px) {
+    body {
+      padding-bottom: 0;
+    }
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-on-amber);
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .skip {
+    position: absolute;
+    left: 12px;
+    top: -48px;
+    z-index: 80;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: var(--color-amber);
+    color: var(--color-on-amber);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .skip:focus {
+    top: 12px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    flex: none;
+    border-radius: 999px;
+    background: var(--color-amber);
+    box-shadow: 0 0 0 5px rgba(245, 196, 0, 0.16);
+  }
+
+  .bars {
+    display: grid;
+    gap: 5px;
+  }
+
+  .bars span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--color-cream);
+    transform-origin: center;
+  }
+
+  .bars[data-open] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .bars[data-open] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .bars[data-open] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .route li {
+    position: relative;
+    padding: 0 0 1.15rem 1.75rem;
+  }
+
+  .route li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background: var(--color-amber);
+    box-shadow: 0 0 0 4px rgba(245, 196, 0, 0.15);
+  }
+
+  .route li::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1.4em;
+    bottom: 0;
+    width: 2px;
+    background: rgba(245, 196, 0, 0.35);
+  }
+
+  .route li:last-child {
+    padding-bottom: 0;
+  }
+
+  .route li:last-child::after {
+    display: none;
+  }
+
+  .reservation [aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+
+  body.nav-open .call-dock {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bars span,
+  .nav-panel {
+    transition: transform 180ms ease, opacity 180ms ease, visibility 180ms ease;
+  }
+
+  .call-dock {
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+
+  .dot {
+    animation: glow 2.6s ease-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dot,
+  .call-dock,
+  .bars span,
+  .nav-panel {
+    animation: none;
+    transition: none;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 196, 0, 0.35);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(245, 196, 0, 0);
+  }
+}
