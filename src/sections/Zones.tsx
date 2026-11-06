@@ -1,6 +1,6 @@
-import { Chips } from "../components/Chips";
+import { useId } from "react";
 import { SectionHead } from "../components/SectionHead";
-import { METRO, REGION } from "../content/places";
+import { METRO_SECTORS, REGION_SECTORS } from "../content/places";
 import { publicAsset, site } from "../lib/site";
 
 const HOURS = [
@@ -45,22 +45,35 @@ export function Zones() {
             <figcaption>Courses en ville, vers la colline.</figcaption>
           </figure>
         </div>
-        <div className="zone-grid">
-          <article className="zone-card liquid-glass liquid-glass--panel" data-reveal>
-            <h3>Métropole</h3>
-            <p className="zone-note">
-              {site.city} et les communes que je parcours pour un rendez-vous, une séance ou un retour à domicile.
-            </p>
-            <Chips items={METRO} label="Communes de la métropole" />
-          </article>
-          <article className="zone-card liquid-glass liquid-glass--panel" data-reveal>
-            <h3>Région et longue distance</h3>
-            <p className="zone-note">
-              Ces trajets se confirment à l’avance. Le prix est dit avant le départ, qu’il soit pris en charge ou non.
-            </p>
-            <Chips items={REGION} label="Villes de la région et au-delà" />
-          </article>
-        </div>
+
+        <article className="directory liquid-glass liquid-glass--panel" data-reveal>
+          <header className="directory-mast">
+            <p className="label">Métropole</p>
+            <h3 className="directory-city">Lyon</h3>
+            <p>Le point d’attache : arrondissements, gares et hôpitaux. Les communes autour se lisent par secteur.</p>
+          </header>
+          <div className="sector-grid sector-grid-metro">
+            {METRO_SECTORS.map((sector) => (
+              <Sector key={sector.title} title={sector.title} places={sector.places} />
+            ))}
+          </div>
+
+          <div className="directory-far">
+            <header className="directory-far-head">
+              <p className="label">Sur confirmation</p>
+              <h3>
+                Au-delà de la <em>métropole</em>.
+              </h3>
+              <p>Ces trajets se réservent à l’avance. Le tarif est annoncé avant le départ, qu’il soit pris en charge ou non.</p>
+            </header>
+            <div className="sector-grid sector-grid-region">
+              {REGION_SECTORS.map((sector) => (
+                <Sector key={sector.title} title={sector.title} places={sector.places} />
+              ))}
+            </div>
+          </div>
+        </article>
+
         <article className="zone-card hours-card liquid-glass liquid-glass--panel" data-reveal>
           <h3>Horaires</h3>
           <ul className="hours spread">
@@ -75,5 +88,19 @@ export function Zones() {
         </article>
       </div>
     </section>
+  );
+}
+
+function Sector({ title, places }: { title: string; places: readonly string[] }) {
+  const titleId = useId();
+  return (
+    <div className="sector">
+      <h4 id={titleId}>{title}</h4>
+      <ul aria-labelledby={titleId}>
+        {places.map((place) => (
+          <li key={place}>{place}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
