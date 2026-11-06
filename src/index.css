@@ -1853,23 +1853,6 @@ textarea.input {
   margin-bottom: 1rem;
 }
 
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 1rem;
-}
-
-.chips li {
-  padding: 0.38rem 0.72rem;
-  border-radius: var(--r-pill);
-  border: 1px solid var(--hair-strong);
-  background: rgb(255 255 255 / 0.035);
-  font-size: 0.8125rem;
-  line-height: 1.35;
-  color: var(--ink-88);
-}
-
 .hours-card {
   margin-top: 1rem;
 }
@@ -1913,13 +1896,22 @@ textarea.input {
   color: var(--ink-54);
 }
 
-.sector li {
+.sector li,
+.sector-columns li {
   padding: 0.42rem 0;
   border-top: 1px solid var(--hair);
   font-size: 0.975rem;
   line-height: 1.35;
   color: var(--ink-88);
   letter-spacing: -0.011em;
+}
+
+.sector-columns {
+  margin-top: 1.5rem;
+}
+
+.sector-columns li {
+  break-inside: avoid;
 }
 
 .directory-far {
@@ -1942,15 +1934,22 @@ textarea.input {
   color: var(--ink-54);
 }
 
-.directory-far .sector li {
+.directory-far .sector li,
+.directory-far .sector-columns li {
   color: var(--ink-72);
   font-size: 0.9rem;
 }
 
 @media (min-width: 700px) {
   .sector-grid-metro,
-  .sector-grid-region {
+  .sector-grid-region,
+  .sector-grid-care {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sector-columns {
+    columns: 2;
+    column-gap: 2.2rem;
   }
 }
 
@@ -1961,6 +1960,23 @@ textarea.input {
 
   .sector-grid-region {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sector-grid-care {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .sector-columns {
+    columns: 3;
+  }
+
+  .sector-flow ul {
+    columns: 2;
+    column-gap: 1.6rem;
+  }
+
+  .sector-flow li {
+    break-inside: avoid;
   }
 }
 
