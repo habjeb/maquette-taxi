@@ -108,7 +108,7 @@ export function mountGodRays(canvas: HTMLCanvasElement) {
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
     if (width < 2 || height < 2) return;
-    const cap = width < 760 ? 1.25 : 1.5;
+    const cap = width < 480 ? 1.15 : width < 760 ? 1.25 : 1.5;
     const pixelRatio = Math.min(window.devicePixelRatio || 1, cap);
     renderer.setPixelRatio(pixelRatio);
     renderer.setSize(width, height, false);
