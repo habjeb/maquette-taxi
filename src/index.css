@@ -631,47 +631,83 @@ textarea.input {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  padding-top: calc(var(--header-h) + 28px);
-  overflow: hidden;
-  isolation: isolate;
+  justify-content: center;
+  padding-top: calc(var(--header-h) + 18px);
+  padding-bottom: 1.2rem;
 }
 
-.hero-media {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 118%;
-  z-index: -2;
+.hero-car {
+  width: min(100%, 920px);
+  margin: 0.35rem auto 0.2rem;
+  padding: 0.45rem;
+  border-radius: 28px;
 }
 
-.hero-media img {
+.hero-car img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 46%;
+  height: auto;
+  aspect-ratio: 720 / 423;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 22px;
+  background: rgb(255 255 255 / 0.03);
 }
 
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(ellipse 72% 58% at 50% 40%, rgb(16 15 20 / 0.78), rgb(16 15 20 / 0.28) 68%),
-    linear-gradient(180deg, rgb(18 17 22 / 0.5) 0%, rgb(18 17 22 / 0.18) 42%, rgb(18 17 22 / 0.55) 84%, var(--ground) 100%);
+@media (min-width: 980px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.98fr);
+    gap: clamp(1.2rem, 3vw, 2.6rem);
+  }
+
+  .hero-center {
+    align-items: flex-start;
+    text-align: left;
+    padding: 0.4rem 0 0.4rem;
+  }
+
+  .hero-ctas {
+    justify-items: start;
+  }
+
+  .hero-support {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero-car {
+    width: 100%;
+    margin: 0;
+  }
+
+  .hero-car img {
+    width: auto;
+    max-width: 100%;
+    max-height: min(52vh, 420px);
+    margin-inline: auto;
+  }
 }
 
 .hero-kicker {
   margin-bottom: 0.95rem;
 }
 
+.hero-layout {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+  display: grid;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .hero-center {
   position: relative;
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2.5rem var(--gutter) 1.5rem;
+  padding: 1.2rem var(--gutter) 0.6rem;
 }
 
 .hero-title {
@@ -680,7 +716,7 @@ textarea.input {
   font-weight: 400;
   line-height: 0.96;
   letter-spacing: -0.025em;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.35rem;
   font-kerning: normal;
 }
 
@@ -1055,14 +1091,13 @@ textarea.input {
   margin: 0.7rem 0.7rem 0;
   border-radius: 20px;
   background: #1a1b22;
-  aspect-ratio: 720 / 423;
 }
 
 .ride-visual img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 50%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .ride-head {
@@ -1725,7 +1760,6 @@ textarea.input {
 }
 
 .scene {
-  --beam-p: 0;
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -1748,26 +1782,25 @@ textarea.input {
 }
 
 .scene-beam {
+  --beam-p: 0;
   position: absolute;
-  width: 48vw;
-  height: 170vh;
-  left: -6vw;
-  top: -32vh;
+  top: -20vh;
+  left: 8vw;
+  width: 22vw;
+  height: 150vh;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgb(255 196 140 / 0.04) 28%,
-    rgb(255 186 120 / 0.18) 46%,
-    rgb(255 220 170 / 0.3) 50%,
-    rgb(255 196 140 / 0.14) 55%,
-    rgb(255 186 120 / 0.04) 72%,
-    transparent 100%
+    rgb(255 196 140 / 0) 30%,
+    rgb(255 186 120 / 0.16) 44%,
+    rgb(255 228 190 / 0.42) 50%,
+    rgb(255 186 120 / 0.16) 56%,
+    transparent 74%
   );
-  filter: blur(22px);
+  filter: blur(8px);
   mix-blend-mode: screen;
-  transform: translate3d(calc(var(--beam-p) * 62vw), calc(var(--beam-p) * 16vh), 0)
-    rotate(calc(-24deg + var(--beam-p) * 14deg));
-  transform-origin: 50% 30%;
+  transform: translate3d(-8vw, 0, 0) rotate(-22deg);
+  transform-origin: 50% 40%;
   will-change: transform;
 }
 
@@ -1822,17 +1855,18 @@ textarea.input {
 
 .vehicle-frame {
   position: relative;
-  aspect-ratio: 720 / 423;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--surface);
+  background: rgb(255 255 255 / 0.03);
 }
 
 .vehicle-frame img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 58%;
+  height: auto;
+  aspect-ratio: 720 / 423;
+  object-fit: contain;
+  object-position: center;
 }
 
 .vehicle-frame::after {
@@ -1963,7 +1997,7 @@ textarea.input {
   }
 
   .scene-beam {
-    transform: translate3d(16vw, 5vh, 0) rotate(-16deg);
+    transform: translate3d(12vw, 4vh, 0) rotate(-18deg);
     will-change: auto;
   }
 }
