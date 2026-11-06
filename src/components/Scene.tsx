@@ -7,8 +7,15 @@ export function Scene() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return undefined;
-    return mountGodRays(canvas);
+    const root = canvas?.parentElement;
+    if (!canvas || !root) return undefined;
+    try {
+      return mountGodRays(canvas);
+    } catch (error) {
+      root.classList.add("scene--fallback");
+      console.error(error);
+      return undefined;
+    }
   }, []);
 
   return (
