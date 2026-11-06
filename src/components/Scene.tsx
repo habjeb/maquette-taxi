@@ -1,19 +1,20 @@
-import { useRef } from "react";
-import { useScrollBeam } from "../hooks/useScrollBeam";
+import { useEffect, useRef } from "react";
 import { publicAsset } from "../lib/site";
+import { mountGodRays } from "../webgl/mountGodRays";
 
 export function Scene() {
-  const beamRef = useRef<HTMLDivElement>(null);
-  useScrollBeam(beamRef);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return undefined;
+    return mountGodRays(canvas);
+  }, []);
 
   return (
     <div className="scene" aria-hidden="true">
-      <div className="scene-aurora" />
-      <div className="scene-beam" ref={beamRef} />
-      <div
-        className="scene-grain"
-        style={{ backgroundImage: `url("${publicAsset("assets/grain.png")}")` }}
-      />
+      <canvas ref={canvasRef} className="scene-canvas" />
+      <div className="scene-grain" style={{ backgroundImage: `url("${publicAsset("assets/grain.png")}")` }} />
     </div>
   );
 }
