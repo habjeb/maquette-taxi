@@ -1,8 +1,6 @@
-import type { CSSProperties, ReactNode } from "react";
-import AnimatedContent from "../components/AnimatedContent";
-import SpotlightCard from "../components/SpotlightCard";
+import type { ReactNode } from "react";
 import { ClockIcon, MoonIcon, PinIcon, PlaneIcon, RouteIcon, TrainIcon } from "../components/icons";
-import { Section } from "./Section";
+import { SectionHead } from "../components/SectionHead";
 
 const SERVICES: { title: string; text: string; icon: ReactNode }[] = [
   {
@@ -39,38 +37,27 @@ const SERVICES: { title: string; text: string; icon: ReactNode }[] = [
 
 export function Services() {
   return (
-    <Section
-      id="services"
-      kicker="01 — Services"
-      title="Les trajets que je prends en charge."
-      intro="De la course en ville au départ à l’aube pour l’aéroport. Un seul numéro, le mien."
-    >
-      <AnimatedContent
-        className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3"
-        distance={24}
-        duration={0.7}
-        blur={4}
-        stagger={0.07}
-        threshold={0.12}
-      >
-        {SERVICES.map((service) => (
-          <SpotlightCard
-            key={service.title}
-            className="h-full"
-            spotlightColor="#f5c400"
-            intensity={0.28}
-            spotlightSize={260}
-            softness={0.78}
-            borderGlow={0.8}
-            grain={0.12}
-            style={{ "--spotlight-card-surface": "#15181f" } as CSSProperties}
-          >
-            <span className="mb-4 grid size-11 place-items-center rounded-xl bg-amber/12 text-amber">{service.icon}</span>
-            <h3 className="m-0 mb-2 text-[1.22rem] font-semibold tracking-tight">{service.title}</h3>
-            <p className="m-0 text-copy">{service.text}</p>
-          </SpotlightCard>
-        ))}
-      </AnimatedContent>
-    </Section>
+    <section className="block" id="services">
+      <div className="container">
+        <SectionHead
+          kicker="01 — Services"
+          title={
+            <>
+              Les trajets que je <em>prends</em> en charge.
+            </>
+          }
+          intro="De la course en ville au départ à l’aube pour l’aéroport. Un seul numéro, le mien."
+        />
+        <div className="card-grid cols-3">
+          {SERVICES.map((service) => (
+            <article key={service.title} className="service-card liquid-glass liquid-glass--panel" data-reveal>
+              <span className="a-icon solo">{service.icon}</span>
+              <h3>{service.title}</h3>
+              <p>{service.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

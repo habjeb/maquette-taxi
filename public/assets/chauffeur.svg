@@ -1,7 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
-  <rect width="800" height="1000" fill="#1a2030"/>
-  <circle cx="400" cy="430" r="220" fill="#121722" stroke="#f5c400" stroke-width="6"/>
-  <circle cx="400" cy="360" r="74" fill="#f5c400"/>
-  <path d="M252 560c26-112 84-156 148-156s122 44 148 156v26H252v-26z" fill="#f5c400"/>
+  <defs>
+    <linearGradient id="studio" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14161c"/>
+      <stop offset="1" stop-color="#08090c"/>
+    </linearGradient>
+    <radialGradient id="key" cx="28%" cy="18%" r="60%">
+      <stop offset="0" stop-color="#3c4150" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#08090c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="coat" x1="400" y1="620" x2="400" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#343844"/>
+      <stop offset="1" stop-color="#16181f"/>
+    </linearGradient>
+    <radialGradient id="face" cx="36%" cy="32%" r="70%">
+      <stop offset="0" stop-color="#6a6e78"/>
+      <stop offset="1" stop-color="#3a3e48"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#studio)"/>
+  <rect width="800" height="1000" fill="url(#key)"/>
+  <path d="M40 1000h720L620 700c-40-90-110-140-220-150-110 10-180 60-220 150L40 1000z" fill="url(#coat)"/>
+  <path d="M355 560h90l18 150h-126z" fill="#2c303a"/>
+  <ellipse cx="400" cy="390" rx="118" ry="132" fill="#1a1c22"/>
+  <ellipse cx="400" cy="430" rx="102" ry="118" fill="url(#face)"/>
+  <path d="M400 250c-70 8-112 70-118 150 36-28 74-42 118-42s82 14 118 42c-6-80-48-142-118-150z" fill="#1a1c22"/>
 </svg>

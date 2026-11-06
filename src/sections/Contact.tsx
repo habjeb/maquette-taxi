@@ -1,8 +1,7 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
-import AnimatedContent from "../components/AnimatedContent";
-import { WhatsAppButton } from "../components/cta";
+import { SectionHead } from "../components/SectionHead";
+import { WhatsAppIcon } from "../components/icons";
 import { buildReservationMessage, site, whatsappUrl } from "../lib/site";
-import { Section } from "./Section";
 
 const STEPS = [
   ["Vous appelez ou vous écrivez", "Téléphone ou WhatsApp, comme vous préférez."],
@@ -61,7 +60,7 @@ export function Contact() {
       content: (
         <>
           Le navigateur a bloqué la fenêtre.{" "}
-          <a className="text-amber" href={url} target="_blank" rel="noopener noreferrer">
+          <a href={url} target="_blank" rel="noopener noreferrer">
             Ouvrir WhatsApp
           </a>
           .
@@ -71,74 +70,86 @@ export function Contact() {
   }
 
   return (
-    <Section
-      id="contact"
-      kicker="05 — Contact"
-      title="Réserver une course"
-      intro="Appelez ou écrivez sur WhatsApp. Un message avec le départ, l’arrivée et l’heure suffit."
-    >
-      <AnimatedContent className="grid items-start gap-8 min-[900px]:grid-cols-[0.9fr_1.1fr] min-[900px]:gap-9" distance={24} duration={0.7}>
-        <div>
-          <ol className="mt-2 mb-6 grid list-none gap-3.5 p-0">
-            {STEPS.map(([title, text], index) => (
-              <li key={title} className="grid grid-cols-[auto_1fr] items-start gap-3">
-                <span className="grid size-8 place-items-center rounded-full bg-amber font-bold text-on-amber">{index + 1}</span>
-                <div>
-                  <strong>{title}</strong>
-                  <p className="mt-0.5 mb-0 text-[0.95rem] text-muted">{text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <a className="mb-3 flex flex-col text-inherit no-underline" href={`tel:${site.phoneTel}`}>
-            <span className="text-sm text-muted">Téléphone</span>
-            <strong className="text-[clamp(1.7rem,4vw,2.4rem)] leading-none font-semibold tracking-tight text-amber whitespace-nowrap tabular-nums">
-              {site.phoneDisplay}
-            </strong>
-          </a>
-          <WhatsAppButton className="sm:w-full">Écrire sur WhatsApp</WhatsAppButton>
-        </div>
+    <section className="block" id="contact">
+      <div className="container">
+        <SectionHead
+          kicker="05 — Contact"
+          title={
+            <>
+              Réserver une <em>course</em>
+            </>
+          }
+          intro="Appelez ou écrivez sur WhatsApp. Un message avec le départ, l’arrivée et l’heure suffit."
+        />
+        <div className="contact-grid">
+          <div data-reveal>
+            <ol className="steps">
+              {STEPS.map(([title, text], index) => (
+                <li key={title}>
+                  <span className="signal-n">0{index + 1}</span>
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <a className="phone-block" href={`tel:${site.phoneTel}`}>
+              <span className="label">Téléphone</span>
+              <strong>{site.phoneDisplay}</strong>
+            </a>
+            <div className="contact-actions">
+              <a className="btn btn-solid btn-lg" href={`tel:${site.phoneTel}`}>
+                Appeler
+              </a>
+              <a className="btn btn-glass liquid-glass btn-lg" href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon />
+                Écrire sur WhatsApp
+              </a>
+            </div>
+          </div>
 
-        <form id="reservation" className="reservation grid gap-3.5 rounded-3xl border border-white/8 bg-panel p-5" onSubmit={onSubmit} onInput={onInput} noValidate>
-          <h3 className="m-0 text-[1.3rem] font-semibold tracking-tight">Préparer un message</h3>
-          <Field id="nom" label="Nom" maxLength={80} autoComplete="name" placeholder="Votre nom" />
-          <div className="grid gap-3.5 sm:grid-cols-2">
-            <Field id="depart" label="Départ" maxLength={120} autoComplete="off" placeholder="Adresse ou lieu" />
-            <Field id="arrivee" label="Arrivée" maxLength={120} autoComplete="off" placeholder="Adresse ou lieu" />
-          </div>
-          <div className="grid gap-3.5 sm:grid-cols-2">
-            <Field id="date" label="Date" type="date" />
-            <Field id="heure" label="Heure" type="time" />
-          </div>
-          <div className="grid gap-1.5">
-            <label htmlFor="note">
-              Précision <span className="text-muted">(facultatif)</span>
-            </label>
-            <textarea
-              id="note"
-              name="note"
-              maxLength={400}
-              placeholder="Bagages, siège enfant, numéro de vol…"
-              className="min-h-[110px] w-full resize-y rounded-xl border border-white/15 bg-[#0e1014] px-3.5 py-3.5 text-cream caret-amber placeholder:text-[#b7b1a4]"
-            />
-          </div>
-          <button className="inline-flex min-h-16 w-full items-center justify-center rounded-2xl bg-amber px-4 font-bold text-on-amber hover:bg-[#ffd84a]" type="submit">
-            Préparer le message WhatsApp
-          </button>
-          <p
-            id="form-status"
-            className={`m-0 min-h-[1.4em] text-[0.95rem] ${status?.error ? "text-danger" : "text-copy"}`}
-            role="status"
-            aria-live="polite"
+          <form
+            id="reservation"
+            className="form-card reservation liquid-glass liquid-glass--strong"
+            data-reveal
+            onSubmit={onSubmit}
+            onInput={onInput}
+            noValidate
           >
-            {status?.content}
-          </p>
-          <p className="m-0 text-sm text-muted">
-            Le bouton ouvre WhatsApp avec ces informations. Aucun message n’est enregistré sur un site.
-          </p>
-        </form>
-      </AnimatedContent>
-    </Section>
+            <h3>Préparer un message</h3>
+            <Field id="nom" label="Nom" maxLength={80} autoComplete="name" placeholder="Votre nom" />
+            <div className="form-row">
+              <Field id="depart" label="Départ" maxLength={120} autoComplete="off" placeholder="Adresse ou lieu" />
+              <Field id="arrivee" label="Arrivée" maxLength={120} autoComplete="off" placeholder="Adresse ou lieu" />
+            </div>
+            <div className="form-row">
+              <Field id="date" label="Date" type="date" />
+              <Field id="heure" label="Heure" type="time" />
+            </div>
+            <div className="field">
+              <label htmlFor="note">
+                Précision <span style={{ color: "var(--ink-54)" }}>(facultatif)</span>
+              </label>
+              <textarea
+                id="note"
+                name="note"
+                maxLength={400}
+                placeholder="Bagages, siège enfant, numéro de vol…"
+                className="input"
+              />
+            </div>
+            <button className="btn btn-solid btn-lg btn-block" type="submit">
+              Préparer le message WhatsApp
+            </button>
+            <p className={`form-status${status?.error ? " is-error" : ""}`} role="status" aria-live="polite">
+              {status?.content}
+            </p>
+            <p className="form-note">Le bouton ouvre WhatsApp avec ces informations. Aucun message n’est enregistré sur un site.</p>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -158,7 +169,7 @@ function Field({
   placeholder?: string;
 }) {
   return (
-    <div className="grid gap-1.5">
+    <div className="field">
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
@@ -168,7 +179,7 @@ function Field({
         maxLength={maxLength}
         autoComplete={autoComplete}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-white/15 bg-[#0e1014] px-3.5 py-3.5 text-cream caret-amber placeholder:text-[#b7b1a4]"
+        className="input"
       />
     </div>
   );

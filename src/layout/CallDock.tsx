@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { PhoneIcon } from "../components/icons";
-import { site } from "../lib/site";
+import { PhoneIcon, WhatsAppIcon } from "../components/icons";
+import { site, whatsappUrl } from "../lib/site";
 
 export function CallDock() {
   const [hidden, setHidden] = useState(true);
@@ -8,47 +8,48 @@ export function CallDock() {
   useEffect(() => {
     const hero = document.getElementById("hero-ctas");
     const contact = document.getElementById("contact");
+    const footer = document.getElementById("pied");
     if (!hero || !contact || !("IntersectionObserver" in window)) return undefined;
 
     const mobile = window.matchMedia("(max-width: 899px)");
     let heroVisible = false;
     let contactVisible = false;
+    let footerVisible = false;
     const sync = () => {
-      setHidden(!mobile.matches || heroVisible || contactVisible);
+      setHidden(!mobile.matches || heroVisible || contactVisible || footerVisible);
     };
-    const contactObserver = new IntersectionObserver(
-      (entries) => {
-        contactVisible = entries.some((entry) => entry.isIntersecting);
-        sync();
-      },
-      { threshold: 0.12 },
-    );
-    const heroObserver = new IntersectionObserver(
-      (entries) => {
-        heroVisible = entries.some((entry) => entry.isIntersecting);
-        sync();
-      },
-      { threshold: 0.4 },
-    );
-    heroObserver.observe(hero);
-    contactObserver.observe(contact);
+    const watch = (node: Element, assign: (value: boolean) => void, threshold: number) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          assign(entries.some((entry) => entry.isIntersecting));
+          sync();
+        },
+        { threshold },
+      );
+      observer.observe(node);
+      return observer;
+    };
+    const observers = [
+      watch(hero, (value) => (heroVisible = value), 0.35),
+      watch(contact, (value) => (contactVisible = value), 0.12),
+    ];
+    if (footer) observers.push(watch(footer, (value) => (footerVisible = value), 0.08));
     mobile.addEventListener("change", sync);
     return () => {
-      heroObserver.disconnect();
-      contactObserver.disconnect();
+      observers.forEach((observer) => observer.disconnect());
       mobile.removeEventListener("change", sync);
     };
   }, []);
 
   return (
-    <a
-      className={`call-dock fixed z-[45] right-4 bottom-[calc(14px+env(safe-area-inset-bottom))] left-4 flex min-h-14 items-center justify-center gap-2.5 rounded-full bg-amber px-4 font-bold text-on-amber no-underline shadow-[0_14px_32px_rgba(0,0,0,0.4)] min-[900px]:hidden ${
-        hidden ? "pointer-events-none translate-y-[140%] opacity-0" : ""
-      }`}
-      href={`tel:${site.phoneTel}`}
-    >
-      <PhoneIcon className="size-5" />
-      <span>Appeler · {site.phoneDisplay}</span>
-    </a>
+    <div className={`call-dock liquid-glass liquid-glass--strong${hidden ? " is-hidden" : ""}`}>
+      <a className="btn btn-solid" href={`tel:${site.phoneTel}`}>
+        <PhoneIcon />
+        Appeler · {site.phoneDisplay}
+      </a>
+      <a className="btn btn-glass liquid-glass icon-btn" href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="Écrire sur WhatsApp">
+        <WhatsAppIcon />
+      </a>
+    </div>
   );
 }
