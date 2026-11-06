@@ -21,25 +21,27 @@ export default function App() {
   return (
     <>
       <Scene />
-      <a className="skip-link" href="#contenu">
-        Aller au contenu
-      </a>
-      <Header />
-      <main id="contenu">
-        <Hero />
-        <Facts />
-        <Statement />
-        <Services />
-        <Ride />
-        <Vsl />
-        <Confort />
-        <Zones />
-        <Hopitaux />
-        <Faq />
-        <Contact />
-      </main>
-      <Footer />
-      <CallDock />
+      <div className="page">
+        <a className="skip-link" href="#contenu">
+          Aller au contenu
+        </a>
+        <Header />
+        <main id="contenu">
+          <Hero />
+          <Facts />
+          <Statement />
+          <Services />
+          <Ride />
+          <Vsl />
+          <Confort />
+          <Zones />
+          <Hopitaux />
+          <Faq />
+          <Contact />
+        </main>
+        <Footer />
+        <CallDock />
+      </div>
     </>
   );
 }

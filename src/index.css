@@ -1759,10 +1759,15 @@ textarea.input {
   --rd: 210ms;
 }
 
+.page {
+  position: relative;
+  z-index: 1;
+}
+
 .scene {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
   background:
@@ -1784,23 +1789,24 @@ textarea.input {
 .scene-beam {
   --beam-p: 0;
   position: absolute;
-  top: -20vh;
-  left: 8vw;
-  width: 22vw;
-  height: 150vh;
+  top: -35vh;
+  left: 50%;
+  width: 46vw;
+  height: 180vh;
+  margin-left: -23vw;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgb(255 196 140 / 0) 30%,
-    rgb(255 186 120 / 0.16) 44%,
-    rgb(255 228 190 / 0.42) 50%,
-    rgb(255 186 120 / 0.16) 56%,
-    transparent 74%
+    rgb(255 186 110 / 0) 30%,
+    rgb(255 168 88 / 0.2) 45%,
+    rgb(255 214 160 / 0.34) 50%,
+    rgb(255 168 88 / 0.2) 55%,
+    transparent 70%
   );
-  filter: blur(8px);
+  filter: blur(2px);
   mix-blend-mode: screen;
-  transform: translate3d(-8vw, 0, 0) rotate(-22deg);
-  transform-origin: 50% 40%;
+  transform: translate3d(-43vw, -4vh, 0) rotate(-15deg);
+  transform-origin: 50% 45%;
   will-change: transform;
 }
 
@@ -2084,10 +2090,5 @@ textarea.input {
 
   .scene-aurora {
     transform: none;
-  }
-
-  .scene-beam {
-    transform: translate3d(12vw, 4vh, 0) rotate(-18deg);
-    will-change: auto;
   }
 }
